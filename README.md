@@ -21,8 +21,8 @@ PC_6(fasta_name, length=200)
 
 #### command line (fasta -> json)
 
--i : input protein fasta file
--o : ouput encoded json file
+-i : input protein fasta file <br>
+-o : ouput encoded json file <br>
 -l : padding length (default=200)
 
 ```bash
