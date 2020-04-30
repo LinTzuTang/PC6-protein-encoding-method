@@ -20,7 +20,6 @@ PC_6(fasta_name, length=200)
 ```
 
 #### command line (fasta -> json)
-```
+```bash
 python3 Protein_Encoding.py -i [fasta] -o [output_path] -l [padding length (default=200)]
-
 ```
