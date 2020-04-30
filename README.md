@@ -18,3 +18,9 @@ The default padding length is 200. User can change padding length depending on l
 from Protein_Encoding import PC_6
 PC_6(fasta_name, length=200)
 ```
+
+#### command line (fasta -> json)
+```
+python3 Protein_Encoding.py -i [fasta] -o [output_path] -l [padding length (default=200)]
+
+```
