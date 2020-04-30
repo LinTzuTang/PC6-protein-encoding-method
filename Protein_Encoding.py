@@ -7,8 +7,8 @@ import pandas as pd
 from Bio import SeqIO
 
 # generate PC6 table
-def amino_encode_table_6(path=None):
-    path = None or 'Data/6_physicochemical_properties/6-pc'
+def amino_encode_table_6():
+    path = '6-pc'
     df = pd.read_csv(path, sep=' ', index_col=0)
     H1 = (df['H1'] - np.mean(df['H1'])) / (np.std(df['H1'], ddof=1))
     V = (df['V'] - np.mean(df['V'])) / (np.std(df['V'], ddof=1))
@@ -26,7 +26,7 @@ def amino_encode_table_6(path=None):
 
 # read fasta as dict
 def read_fasta(fasta_fname):
-    path = 'Data/Fasta/'+ fasta_fname
+    path = fasta_fname
     r = dict()
     for record in SeqIO.parse(path, 'fasta'):
         idtag = str(record.id)
