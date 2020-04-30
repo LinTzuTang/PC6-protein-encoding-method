@@ -1,10 +1,13 @@
+
 #!/usr/bin/env python
 # coding: utf-8
 
-import re
+import argparse
+import json
 import numpy as np
 import pandas as pd
 from Bio import SeqIO
+import os
 
 # generate PC6 table
 def amino_encode_table_6():
@@ -20,7 +23,7 @@ def amino_encode_table_6():
     amino = ['A','C','D','E','F','G','H','I','K','L','M','N','P','Q','R','S','T','V','W','Y']
     table = {}
     for index,key in enumerate(amino):
-        table[key]=c[0:6,index]
+        table[key]=list(c[0:6,index])
     table['X'] = [0,0,0,0,0,0]
     return table
 
@@ -55,6 +58,15 @@ def PC_encoding(data):
         dat[key]=integer_encoded
     return dat
 
+def encoding(data, method):
+    #method = integer or onehot
+    dat={}
+    for  key in data.keys():
+        integer_encoded = []
+        for amino in list(data[key][0]):
+            integer_encoded.append(table_dict[method][amino])
+        dat[key]=integer_encoded
+    return dat
 
 # PC6 (input: fasta) 
 def PC_6(fasta_name, length=200):
@@ -62,3 +74,17 @@ def PC_6(fasta_name, length=200):
     data = padding_seq(r, length=200)
     dat = PC_encoding(data)
     return dat
+
+def save(input_fasta, output_path, length=200):
+    dat = PC_6(input_fasta, length=length)
+    json.dump(dat, open(output_path, "w"), indent=4)
+
+if __name__ == '__main__':   
+
+    parser = argparse.ArgumentParser(description='PC_6 encoding')
+    parser.add_argument('-i','--input_fasta',help='input_fasta',required=True)
+    parser.add_argument('-o','--output_path',help='output path',required=True)
+    parser.add_argument('-l','--length',help='padding length (default = 200)',type=int)
+    args = parser.parse_args()
+    save(input_fasta=args.input_fasta, output_path=args.output_path, length=args.length)
+    
