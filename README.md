@@ -12,7 +12,7 @@ Each amino acid character in a sequence would be replaced by a vector composed o
 
 
 #### fasta -> dict
-The default padding length is 200. User can change padding length depending on length of input protein data.(padding length must > max peptide length in data)
+The default padding length is 200. User can change padding length depending on length of input protein data.(**padding length must > max peptide length in data)
 
 ```python
 from Protein_Encoding import PC_6
