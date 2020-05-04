@@ -11,7 +11,7 @@ import os
 
 # generate PC6 table
 def amino_encode_table_6():
-    path = '6-pc'
+    path = os.path.join(os.path.dirname(__file__), '6-pc')
     df = pd.read_csv(path, sep=' ', index_col=0)
     H1 = (df['H1'] - np.mean(df['H1'])) / (np.std(df['H1'], ddof=1))
     V = (df['V'] - np.mean(df['V'])) / (np.std(df['V'], ddof=1))
